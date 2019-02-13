@@ -11,7 +11,7 @@ import io.opentracing.Span;
 import io.opentracing.Tracer;
 
 public class Hello {
-	final Logger logger = LoggerFactory.getLogger(Hello.class);
+	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final Tracer tracer;
 
 	private Hello(Tracer tracer) {
@@ -43,7 +43,7 @@ public class Hello {
 		try {
 			tracer = Tracing.init("hello-world");
 		} catch (Exception e) {
-			throw e;
+			return;
 		}
 
 		hello = new Hello(tracer);
